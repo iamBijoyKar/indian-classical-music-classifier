@@ -7,10 +7,10 @@ import tensorflow as tf
 import os
 
 # load model
-model_path = os.path.join(os.path.dirname(__file__), "6-class-indian-classical-music-classifier-model.keras")
+model_path = os.path.join(os.path.dirname(__file__), "7-class-indian-classical-music-classifier-6000samples-model@v1.keras")
 model = tf.keras.models.load_model(model_path)
 
-song_label_dict = {0: 'Ghazal', 1: 'Kawali', 2: 'Nazrul Geeti', 3: 'Rabindra Sangeet', 4: 'Thumri', 5: 'Bhajan'} 
+song_label_dict = {0: 'Ghazal', 1: 'Kawali', 2: "Mantra", 3: 'Nazrul Geeti', 4: 'Rabindra Sangeet', 5: 'Thumri', 6: 'Bhajan'} 
 
 def get_peak_frequency(audio_data, sr):
     # Compute the Short-Time Fourier Transform (STFT)
