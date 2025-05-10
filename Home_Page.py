@@ -228,23 +228,23 @@ def main():
         if prediction == 'Ghazal':
             st.write("Recommended Songs with Similar Health Benefit: 'Tumhare Hawaale Watan Saathiyo', 'Dil Dhoondta Hai'")
             st.write("Here is a recommended sample song 🎵 with similar health benefit, to listen 👇 ")
-            st.audio(os.path.join(cwd_path, 'audio', 'SpotifyMate.com - Raghupati Raghav Raja Ram Original - Kavita Raam.mp3'), format="audio/mp3")
+            st.audio(os.path.join(cwd_path, 'audio', 'Aaj Jane Ki Zid Na Karo.mp3'), format="audio/mp3")
         elif prediction == 'Kawali':
             st.write("Recommended Songs with Similar Health Benefit: 'Bhar Do Jholi Meri', 'Tajdar-e-Haram'")
             st.write("Here is a recommended sample song 🎵 with similar health benefit, to listen 👇 ")
-            st.audio(os.path.join(cwd_path, 'audio', 'SpotifyMate.com - Raghupati Raghav Raja Ram Original - Kavita Raam.mp3'), format="audio/mp3")
+            st.audio(os.path.join(cwd_path, 'audio', 'Aaj Rang Hai.mp3'), format="audio/mp3")
         elif prediction == 'Nazrul Geeti':
             st.write("Recommended Songs with Similar Health Benefit: 'Dhana Dhanya Pushpa Bhora', 'Chhaya Manik Ranga'")
             st.write("Here is a recommended sample song 🎵 with similar health benefit, to listen 👇 ")
-            st.audio(os.path.join(cwd_path, 'audio', 'SpotifyMate.com - Raghupati Raghav Raja Ram Original - Kavita Raam.mp3'), format="audio/mp3")
+            st.audio(os.path.join(cwd_path, 'audio', 'Aajo Madhuro Banshori Baaje.mp3'), format="audio/mp3")
         elif prediction == 'Rabindra Sangeet':
             st.write("Recommended Songs with Similar Health Benefit: 'Ekla Cholo Re', 'Amar Sonar Bangla'")
             st.write("Here is a recommended sample song 🎵 with similar health benefit, to listen 👇 ")
-            st.audio(os.path.join(cwd_path, 'audio', 'SpotifyMate.com - Raghupati Raghav Raja Ram Original - Kavita Raam.mp3'), format="audio/mp3")
+            st.audio(os.path.join(cwd_path, 'audio', 'Phule Phule Dhole Dhole.mp3'), format="audio/mp3")
         elif prediction == 'Thumri':
             st.write("Recommended Songs with Similar Health Benefit: 'Piya Milenge Na', 'Rang Barse Bheege Chunar Wali'")
             st.write("Here is a recommended sample song 🎵 with similar health benefit, to listen 👇 ")
-            st.audio(os.path.join(cwd_path, 'audio', 'SpotifyMate.com - Raghupati Raghav Raja Ram Original - Kavita Raam.mp3'), format="audio/mp3")
+            st.audio(os.path.join(cwd_path, 'audio', 'Ab Ke Sawan Ghar Aaja.mp3'), format="audio/mp3")
         elif prediction == 'Bhajan':
             st.write("Recommended Songs with Similar Health Benefit: 'Raghupati Raghav Raja Ram', 'Vaishnav Jan To Tene Kahiye'")
             st.write("Here is a recommended sample song 🎵 with similar health benefit, to listen 👇 ")
@@ -252,7 +252,7 @@ def main():
         elif prediction == 'Mantra':
             st.write("Recommended Songs with Similar Health Benefit: 'Om Namah Shivaya', 'Gayatri Mantra'")
             st.write("Here is a recommended sample song 🎵 with similar health benefit, to listen 👇 ")
-            st.audio(os.path.join(cwd_path, 'audio', 'SpotifyMate.com - Raghupati Raghav Raja Ram Original - Kavita Raam.mp3'), format="audio/mp3")
+            st.audio(os.path.join(cwd_path, 'audio', 'Aarambh.mp3'), format="audio/mp3")
         else:
             st.write("No recommendations available for this genre.")
             
