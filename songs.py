@@ -6,11 +6,15 @@ import matplotlib.pyplot as plt
 import tensorflow as tf
 import os
 
+# path
+cwd_path = os.path.dirname(os.path.abspath(__file__))
+
 # load model
 model_path = os.path.join(os.path.dirname(__file__), "7-class-indian-classical-music-classifier-6000samples-model@v1.keras")
 model = tf.keras.models.load_model(model_path)
 
 song_label_dict = {0: 'Ghazal', 1: 'Kawali', 2: "Mantra", 3: 'Nazrul Geeti', 4: 'Rabindra Sangeet', 5: 'Thumri', 6: 'Bhajan'} 
+song_health_benifit_dict = {'Ghazal': 'Emotional release, helps with grief, bipolar therapy. Relaxes nervous system', 'Kawali': 'Reduce stress, depression, induces meditative state. Boosts immune system, lowers cortisol', 'Nazrul Geeti': ' Inspires strength, fights depression. Stimulates nervous system', 'Rabindra Sangeet': ' Used in psychotherapy, helps with depression & clarity. Benefits cardiovascular health', 'Thumri': 'Relaxes nervous system', 'Bhajan': 'Reduce anxiety, brings calm and spiritual grounding. Lowers blood pressure, calms heart rate', 'Mantra': 'Lowers blood pressure, calms heart rate'}
 
 def get_peak_frequency(audio_data, sr):
     # Compute the Short-Time Fourier Transform (STFT)
@@ -158,7 +162,9 @@ def predict_audio(audio_data, sr):
     args = np.argmax(y_hat, axis=1)
     pred_labels = [song_label_dict[arg] for arg in args]
     final_pred = max(set(pred_labels), key = pred_labels.count)
-    return final_pred
+    count = pred_labels.count(final_pred)
+    confidence = count / len(pred_labels)
+    return final_pred, confidence
 
 # Extract features from the audio file (Example: MFCCs)
 def extract_features(audio_data, sr):
@@ -176,8 +182,18 @@ def extract_features(audio_data, sr):
     return data_table
 
 def main():
+    # Set up the Streamlit app 
+    st.set_page_config(page_title="Indian Classical Music Genre Classifier", page_icon=":musical_note:", layout="centered")
     st.title("Indian Classical Music Genre Classifier")
-    st.write("This is a simple demo of an Indian Classical Music Genre Classifier using a Deep Neural Network. The model is trained on 6 Indian Classical Music genres: Ghazal, Kawali, Nazrul Geeti, Rabindra Sangeet, Thumri, and Bhajan.")
+    st.write("This is a simple demo of an Indian Classical Music Genre Classifier using a Deep Neural Network. The model is trained on 6 Indian Classical Music genres: Ghazal, Kawali, Nazrul Geeti, Rabindra Sangeet, Thumri, Mantra and Bhajan.")
+
+    #sidebar
+    st.sidebar.title("About")
+    if st.sidebar.button("About the App", key="about"):
+        st.switch_page(about_page)
+
+    st.sidebar.info("This app is built using Streamlit and TensorFlow. The model is trained on 6000 samples of Indian Classical Music genres.")
+    st.sidebar.info("The app allows you to upload an audio file and get the predicted genre along with its health benefits.")
     # Upload audio file
     uploaded_file = st.file_uploader("Upload an audio file", type=["wav", "mp3", "ogg"])
     
@@ -190,16 +206,52 @@ def main():
         
         # Display waveform
         st.subheader("Waveform of the Audio")
-        fig, ax = plt.subplots()
+        fig, ax = plt.subplots(figsize=(10, 4))
         librosa.display.waveshow(audio_data, sr=sr, ax=ax)
         ax.set_title("Waveform")
         st.pyplot(fig)
 
-
         # Predict using the mock function
         st.subheader("Prediction")
-        prediction = predict_audio(audio_data, sr)
+        prediction, confidence = predict_audio(audio_data, sr)
         st.write(f"Model Prediction: **{prediction}**")
+        st.write(f"Model Confidence: **{confidence:.2f}**")
+
+        # Display health benefits
+        st.subheader("Health Benefits")
+        if prediction in song_health_benifit_dict:
+            st.write(f"Health Benefits of **{prediction}**: {song_health_benifit_dict[prediction]}")
+        else:
+            st.write("No health benefits information available for this genre.")
+
+        # Recommendations
+        st.subheader("Recommendations")
+        if prediction == 'Ghazal':
+            st.write("Recommended Songs with Similar Health Benefit: 'Tumhare Hawaale Watan Saathiyo', 'Dil Dhoondta Hai'")
+            st.audio(os.path.join(cwd_path, 'audio', 'SpotifyMate.com - Raghupati Raghav Raja Ram Original - Kavita Raam.mp3'), format="audio/mp3")
+        elif prediction == 'Kawali':
+            st.write("Recommended Songs with Similar Health Benefit: 'Bhar Do Jholi Meri', 'Tajdar-e-Haram'")
+            st.audio(os.path.join(cwd_path, 'audio', 'SpotifyMate.com - Raghupati Raghav Raja Ram Original - Kavita Raam.mp3'), format="audio/mp3")
+        elif prediction == 'Nazrul Geeti':
+            st.write("Recommended Songs with Similar Health Benefit: 'Dhana Dhanya Pushpa Bhora', 'Chhaya Manik Ranga'")
+            st.audio(os.path.join(cwd_path, 'audio', 'SpotifyMate.com - Raghupati Raghav Raja Ram Original - Kavita Raam.mp3'), format="audio/mp3")
+        elif prediction == 'Rabindra Sangeet':
+            st.write("Recommended Songs with Similar Health Benefit: 'Ekla Cholo Re', 'Amar Sonar Bangla'")
+            st.audio(os.path.join(cwd_path, 'audio', 'SpotifyMate.com - Raghupati Raghav Raja Ram Original - Kavita Raam.mp3'), format="audio/mp3")
+        elif prediction == 'Thumri':
+            st.write("Recommended Songs with Similar Health Benefit: 'Piya Milenge Na', 'Rang Barse Bheege Chunar Wali'")
+            st.audio(os.path.join(cwd_path, 'audio', 'SpotifyMate.com - Raghupati Raghav Raja Ram Original - Kavita Raam.mp3'), format="audio/mp3")
+        elif prediction == 'Bhajan':
+            st.write("Recommended Songs with Similar Health Benefit: 'Raghupati Raghav Raja Ram', 'Vaishnav Jan To Tene Kahiye'")
+            st.audio(os.path.join(cwd_path, 'audio', 'SpotifyMate.com - Raghupati Raghav Raja Ram Original - Kavita Raam.mp3'), format="audio/mp3")
+        elif prediction == 'Mantra':
+            st.write("Recommended Songs with Similar Health Benefit: 'Om Namah Shivaya', 'Gayatri Mantra'")
+            st.audio(os.path.join(cwd_path, 'audio', 'SpotifyMate.com - Raghupati Raghav Raja Ram Original - Kavita Raam.mp3'), format="audio/mp3")
+        else:
+            st.write("No recommendations available for this genre.")
+            
+
+
 
 if __name__ == "__main__":
     main()
