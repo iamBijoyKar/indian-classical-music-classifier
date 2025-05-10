@@ -190,9 +190,8 @@ def main():
     st.write("This is a simple demo of an Indian Classical Music Genre Classifier using a Deep Neural Network. The model is trained on 6 Indian Classical Music genres: Ghazal, Kawali, Nazrul Geeti, Rabindra Sangeet, Thumri, Mantra and Bhajan.")
 
     #sidebar
-    st.sidebar.title("About")
-    st.sidebar.info("This app is built using Streamlit and TensorFlow. The model is trained on 6000 samples of Indian Classical Music genres.")
-    st.sidebar.info("The app allows you to upload an audio file and get the predicted genre along with its health benefits.")
+    st.sidebar.subheader("ℹ️ Classifier Model Complications & Information")
+    st.sidebar.info("Kawali, Ghazal and Thumri have similar characteristics and tone, as well as bhajan and mantra are also similar, so the model may confuse them. On the other hand, Rabindra Sangeet and Nazrul Geeti are not similar, so the model may perform well on them. The model is trained on 6000 segment samples of 7 classes of Indian Classical Music with over 400 hundred of music samples.")
 
     # Upload audio file
     uploaded_file = st.file_uploader("Upload an audio file", type=["wav", "mp3", "ogg"])
@@ -228,29 +227,38 @@ def main():
         st.subheader("Recommendations")
         if prediction == 'Ghazal':
             st.write("Recommended Songs with Similar Health Benefit: 'Tumhare Hawaale Watan Saathiyo', 'Dil Dhoondta Hai'")
+            st.write("Here is a recommended sample song 🎵 with similar health benefit, to listen 👇 ")
             st.audio(os.path.join(cwd_path, 'audio', 'SpotifyMate.com - Raghupati Raghav Raja Ram Original - Kavita Raam.mp3'), format="audio/mp3")
         elif prediction == 'Kawali':
             st.write("Recommended Songs with Similar Health Benefit: 'Bhar Do Jholi Meri', 'Tajdar-e-Haram'")
+            st.write("Here is a recommended sample song 🎵 with similar health benefit, to listen 👇 ")
             st.audio(os.path.join(cwd_path, 'audio', 'SpotifyMate.com - Raghupati Raghav Raja Ram Original - Kavita Raam.mp3'), format="audio/mp3")
         elif prediction == 'Nazrul Geeti':
             st.write("Recommended Songs with Similar Health Benefit: 'Dhana Dhanya Pushpa Bhora', 'Chhaya Manik Ranga'")
+            st.write("Here is a recommended sample song 🎵 with similar health benefit, to listen 👇 ")
             st.audio(os.path.join(cwd_path, 'audio', 'SpotifyMate.com - Raghupati Raghav Raja Ram Original - Kavita Raam.mp3'), format="audio/mp3")
         elif prediction == 'Rabindra Sangeet':
             st.write("Recommended Songs with Similar Health Benefit: 'Ekla Cholo Re', 'Amar Sonar Bangla'")
+            st.write("Here is a recommended sample song 🎵 with similar health benefit, to listen 👇 ")
             st.audio(os.path.join(cwd_path, 'audio', 'SpotifyMate.com - Raghupati Raghav Raja Ram Original - Kavita Raam.mp3'), format="audio/mp3")
         elif prediction == 'Thumri':
             st.write("Recommended Songs with Similar Health Benefit: 'Piya Milenge Na', 'Rang Barse Bheege Chunar Wali'")
+            st.write("Here is a recommended sample song 🎵 with similar health benefit, to listen 👇 ")
             st.audio(os.path.join(cwd_path, 'audio', 'SpotifyMate.com - Raghupati Raghav Raja Ram Original - Kavita Raam.mp3'), format="audio/mp3")
         elif prediction == 'Bhajan':
             st.write("Recommended Songs with Similar Health Benefit: 'Raghupati Raghav Raja Ram', 'Vaishnav Jan To Tene Kahiye'")
+            st.write("Here is a recommended sample song 🎵 with similar health benefit, to listen 👇 ")
             st.audio(os.path.join(cwd_path, 'audio', 'SpotifyMate.com - Raghupati Raghav Raja Ram Original - Kavita Raam.mp3'), format="audio/mp3")
         elif prediction == 'Mantra':
             st.write("Recommended Songs with Similar Health Benefit: 'Om Namah Shivaya', 'Gayatri Mantra'")
+            st.write("Here is a recommended sample song 🎵 with similar health benefit, to listen 👇 ")
             st.audio(os.path.join(cwd_path, 'audio', 'SpotifyMate.com - Raghupati Raghav Raja Ram Original - Kavita Raam.mp3'), format="audio/mp3")
         else:
             st.write("No recommendations available for this genre.")
             
-
+        # warning
+        st.warning("Classification of music genres is a complex task, difference between music genres can be very thin and the model may not always be accurate. Please use the predictions as a guide and not as a definitive answer. View the sidebar for more information.",icon="⚠️")
+        st.warning("The health benefits mentioned are based on general observations and may not apply to everyone. Please consult a healthcare professional for personalized advice.",icon="⚠️")
 
 
 if __name__ == "__main__":
