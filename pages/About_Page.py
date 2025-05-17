@@ -7,24 +7,13 @@ def show_about_page():
         page_icon=":musical_note:",
         layout="centered",
     )
-    st.title("Indian Classical Music Genre Classifier")
-    
-    st.header("Project Overview")
+    st.title("CLASSIFYING INDIAN CLASSICAL MUSIC FOR THERAPEUTIC CAUSE USING LIGHTWEIGHT DEEP NEURAL NETWORK")
     st.write("""
-    This project uses a deep neural network model to classify music into different genres.
-    The model analyzes various audio features extracted from music files to predict their genres.
-    The dataset used for training the model consists of audio files from various Indian classical music genres, like ***Bhajan, Ghazal, Kawali, Rabindra Sangeet, Nazrul Geeti Mantra, and Thumri***.
-    """)
-    
-    st.header("Model Performance")
-    st.write("""The Classification Report below shows the performance of the model across different genres.""")
-    st.image(os.path.join("assets", "classification-report.png"), caption="Classification Report")
-    st.write("""The confusion matrix below shows the model's predictions compared to the actual genres.""")
-    st.image(os.path.join("assets", "heatmap.png"), caption="Model Performance Metrics")
-
-    st.header("Model Training and Evaluation")
-    st.write("""1-cycle scheduler is used to schedule the learning rate. The learning rate graph below shows the learning rate over epochs.""")
-    st.image(os.path.join("assets", "lr-graph.png"), caption="Learning Rate Graph")
+*Bijoy Kar, Parijat Das, Arnab Kundu, 
+Pratingya Sahoo, Sweta Kumari & Prof. Somsubhra Gupta* 
+""")
+    st.image(os.path.join("assets", "team.jpg"), caption="Our Research Team")
+    st.write("""We are student of ***Swami Vivekananda University, Barrackpore department of Computer Science and Engineering.*** This research is the final year project of our graduating year, 2025 under the supervision of Prof. Somsubhra Gupta, School of Computer Science. """)
     
     
 
