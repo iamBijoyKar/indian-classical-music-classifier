@@ -13,7 +13,7 @@ cwd_path = os.path.dirname(os.path.abspath(__file__))
 
 # load model
 model_path = os.path.join(os.path.dirname(__file__), "7-class-indian-classical-music-classifier-6000samples-model@v1.keras")
-model = tf.keras.models.load_model(model_path)
+model = tf.keras.models.load_model(model_path, compile=False)
 
 song_label_dict = {0: 'Ghazal', 1: 'Kawali', 2: "Mantra", 3: 'Nazrul Geeti', 4: 'Rabindra Sangeet', 5: 'Thumri', 6: 'Bhajan'} 
 song_health_benifit_dict = {'Ghazal': 'Emotional release, helps with grief, bipolar therapy. Relaxes nervous system', 'Kawali': 'Reduce stress, depression, induces meditative state. Boosts immune system, lowers cortisol', 'Nazrul Geeti': ' Inspires strength, fights depression. Stimulates nervous system', 'Rabindra Sangeet': ' Used in psychotherapy, helps with depression & clarity. Benefits cardiovascular health', 'Thumri': 'Relaxes nervous system', 'Bhajan': 'Reduce anxiety, brings calm and spiritual grounding. Lowers blood pressure, calms heart rate', 'Mantra': 'Lowers blood pressure, calms heart rate'}
